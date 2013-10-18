@@ -6,6 +6,8 @@ import static common.Topics.JOIN;
 
 import common.Observer;
 
+import java.util.*;
+
 public class UKKGuessingGameClient extends GuessingGameClient {
 	UKKGuessingGameClient c;
 	Integer secretValue=3;
@@ -30,10 +32,10 @@ public class UKKGuessingGameClient extends GuessingGameClient {
 				boolean isHinting=(Boolean)response;
 				if(isHinting){
 					// set new secret value for this round
-					secretValue=3;
+					secretValue=1+(int)(Math.random() * 9);
 				}else{
 					// send first guess
-					lastGuess=1;
+					lastGuess=5;
 					try{
 					c.publish(GUESS, lastGuess);
 					}catch(Exception e){
