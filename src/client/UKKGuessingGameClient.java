@@ -18,7 +18,7 @@ public class UKKGuessingGameClient extends GuessingGameClient {
 		}
 	}
 	public UKKGuessingGameClient(){
-		String ip="localhost";
+		String ip="10.20.60.170";
 		int port=12345;
 		String teamName="UKK";
 		// subscribe observers
