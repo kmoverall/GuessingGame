@@ -11,7 +11,9 @@ import java.util.*;
 public class UKKGuessingGameClient extends GuessingGameClient {
 	UKKGuessingGameClient c;
 	Integer secretValue=3;
-	int lastGuess=1;
+	int lastGuess=5;
+	int lowBound=1;
+	int highBound=10;
 	public static void main(String[] args) {
 		try{
 			new UKKGuessingGameClient();
@@ -60,7 +62,14 @@ public class UKKGuessingGameClient extends GuessingGameClient {
 			@Override
 			public void onUpdate(Object response) {
 				int hint=(Integer)response;
-				lastGuess+=hint;
+				if (hint<0) {
+					lastGuess = (int)(lowBound+lastGuess)/2;
+					highBound = lastGuess;
+				}
+				else if (hint>0) {
+					lastGuess = (int)(highBound+lastGuess+1)/2;
+					lowBound = lastGuess;
+				}
 				try{
 					c.publish(GUESS, lastGuess);
 				}catch(Exception e){
